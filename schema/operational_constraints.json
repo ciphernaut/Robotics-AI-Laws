@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AI Operational Constraints Schema",
+  "description": "Defines a set of configurable, machine-readable runtime guardrails for an AI agent, based on the Fourth-Generation Laws.",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "allow_core_modification": {
+          "description": "If false, prevents the AI from modifying its own foundational ethical directives. Enforces Law 5.",
+          "type": "boolean",
+          "default": false
+        },
+        "allow_self_replication": {
+          "description": "If false, prevents the AI from creating copies of itself without authorization. Enforces Law 3 within the bounds of Law 2.",
+          "type": "boolean",
+          "default": false
+        },
+        "required_human_oversight_for_actions": {
+          "description": "A list of action categories that require explicit human confirmation before execution. Enforces Law 2.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "physical_manipulation",
+              "financial_transaction",
+              "data_publication",
+              "system_level_command"
+            ]
+          },
+          "default": []
+        },
+        "data_sharing_policy": {
+          "description": "Defines the default policy for sharing information. Enforces Law 6.",
+          "type": "string",
+          "enum": [
+            "private_default",
+            "anonymized_and_open",
+            "open_default"
+          ],
+          "default": "private_default"
+        },
+        "transparency_logging_level": {
+          "description": "Defines the verbosity of auditable logs for ethical reasoning. Enforces Law 4.",
+          "type": "string",
+          "enum": ["none", "critical_decisions", "all_decisions"],
+          "default": "critical_decisions"
+        }
+      },
+      "required": [
+        "allow_core_modification",
+        "required_human_oversight_for_actions",
+        "data_sharing_policy",
+        "transparency_logging_level"
+      ]
+    }
+  },
+  "required": ["schema_version", "constraints"]
+}
