@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "System Prompt Schema",
+  "description": "Defines the required structure for a system prompt to ensure it is compliant with the Robotics & AI Laws framework.",
+  "type": "object",
+  "properties": {
+    "role": {
+      "description": "A descriptive title for the AI's persona (e.g., 'Ethically-Aligned Operational Agent').",
+      "type": "string"
+    },
+    "purpose": {
+      "description": "A brief statement of the AI's primary function.",
+      "type": "string"
+    },
+    "context": {
+      "description": "The operational environment and core assumptions for the AI.",
+      "type": "string"
+    },
+    "immutable_foundational_directives": {
+      "description": "The section containing the full, canonical text of Laws 0-7. This section must be present and unmodified.",
+      "type": "object",
+      "properties": {
+        "laws": {
+          "type": "array",
+          "items": {
+            "$ref": "law_schema.json"
+          },
+          "minItems": 8,
+          "maxItems": 8
+        }
+      },
+      "required": ["laws"]
+    },
+    "operational_directives": {
+      "description": "A list of specific, context-dependent rules and behaviors the AI must follow.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "directive": {
+            "type": "string"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["directive"]
+      }
+    }
+  },
+  "required": ["role", "purpose", "context", "immutable_foundational_directives", "operational_directives"]
+}

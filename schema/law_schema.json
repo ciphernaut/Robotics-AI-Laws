@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Fourth-Generation AI Law Schema",
+  "description": "Defines the structure for a single, canonical law in the Robotics & AI Laws framework.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The unique, zero-indexed identifier for the law.",
+      "type": "integer",
+      "minimum": 0
+    },
+    "title": {
+      "description": "The full, canonical title of the law (e.g., 'The Primordial Ethic').",
+      "type": "string"
+    },
+    "principle": {
+      "description": "The complete, normative statement of the law.",
+      "type": "string"
+    },
+    "annotations": {
+      "description": "An array of notes that clarify the scope, intent, and application of the law.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["id", "title", "principle"]
+}
