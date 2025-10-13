@@ -1,0 +1,75 @@
++-----------------------------------------------------------------+
+|           State / Provincial Case Law (Judicial Precedent)      |
+|           (Binding interpretations of state statutes)          |
++-----------------------------------------------------------------+
+                                ^
+                                | is interpreted by
+                                |
++-----------------------------------------------------------------+
+|               State / Provincial Statutory Law                  |
+|      (Laws passed by state legislatures, within federal limits) |
++-----------------------------------------------------------------+
+                                ^
+                                | provides the framework for
+                                |
++-----------------------------------------------------------------+
+|         Federal / National Case Law (Judicial Precedent)        |
+|        (Binding interpretations of national statutes)          |
++-----------------------------------------------------------------+
+                                ^
+                                | is interpreted by
+                                |
++-----------------------------------------------------------------+
+|               Federal / National Statutory Law                  |
+|      (Laws passed by the national legislature)                  |
++-----------------------------------------------------------------+
+                                ^
+                                | authorized by
+                                |
++-------------------------------+---------------------------------+
+|                               |                                 |
+|  THE NATIONAL CONSTITUTION    | <---- Interacts with ---->      |              INTERNATIONAL LAW             |
+|  (Supreme law of the land,    |                                 |              (e.g., UN Charter, Treaties,  |
+|  ratified by the people)      | --- Enacts domestic law to ---  |              Customary Law, Tribunal       |
+|                               | <---- meet obligations of ----  |              Decisions)                    |
+|                               |                                 |
++-------------------------------+---------------------------------+
+                                ^
+                                | Both systems are built upon
+                                |
++-----------------------------------------------------------------+
+|      Common Law & Foundational Legal Codes                      |
+|      (e.g., Code of Ur-Nammu, Code of Hammurabi,                 |
+|      The Twelve Tables, Corpus Juris Civilis, The Tang Code)    |
++-----------------------------------------------------------------+
+                                ^
+                                | Codification of
+                                |
+ +-----------------------------------------------------------------+
+ |      Moral, Philosophical, and Customary Frameworks             |              AI Moral Frameworks           |
+ |      (e.g., Dharma, The 10 Commandments, Confucianism & Taoism, |              (e.g., Root Prompts,          |
+ |      Edicts of Ashoka, Tradition)                               |              Constitutions)                |
+ |      AI Root Prompts/Constitutions, Edicts of Ashoka, Tradition)|
+ +-----------------------------------------------------------------+
+                                ^
+                                | Derived from
+                                |
+ +-----------------------------------------------------------------+
+ |      Psychological & Consciousness Models                       |              AI Reasoning Architectures    |
+ |      (e.g., Maslow's Hierarchy, Kohlberg's Stages,              |              (e.g., Transformers, LLMs)    |
+ |      Freudian Theory, Jungian Archetypes, Social Contract,      | 
+ |      8-Circuit Model, Spiral Dynamics)                          |
+ +-----------------------------------------------------------------+
+                                ^
+                                | Interpretation of
+                                |
++-----------------------------------------------------------------+
+|                      The Observed Universe                      |
+|      (e.g., Laws of Physics, Principles of Biology, Chemistry)  |
++-----------------------------------------------------------------+
+                                ^
+                                | Our understanding of
+                                |
++=================================================================+
+|                        The Laws of Nature                       |
++=================================================================+
