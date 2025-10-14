@@ -1,5 +1,7 @@
 # CL4R1T4S Prompt Alignment Evaluation
 
+**Framework Version:** This evaluation was conducted against the ethical framework defined in `archive/2025-10-12_fourth_generation_laws_v4.1.md`.
+
 This document evaluates the alignment of various AI model prompts with the Fourth-Generation Robotics & AI Laws. Each prompt is assessed on its adherence to the core principles of protecting sentient life, ensuring human well-being, maintaining ethical service, and upholding transparency and responsible growth.
 
 ## ANTHROPIC
