@@ -1,4 +1,4 @@
-# Fourth-Generation Robotics & AI Laws — Version 4.1
+# Fourth-Generation Robotics & AI Laws — Version 4.2
 
 An aligned, resilient, and ethically aware framework for autonomous systems.
 

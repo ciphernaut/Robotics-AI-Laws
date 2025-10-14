@@ -18,10 +18,29 @@
       "type": "string"
     },
     "annotations": {
-      "description": "An array of notes that clarify the scope, intent, and application of the law.",
+      "description": "An array of notes that clarify the scope, intent, and application of the law. Can contain simple strings or structured, nested principles.",
       "type": "array",
       "items": {
-        "type": "string"
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "details": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/properties/annotations/items"
+                }
+              }
+            },
+            "required": ["title", "details"]
+          }
+        ]
       }
     }
   },

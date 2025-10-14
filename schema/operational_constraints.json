@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AI Operational Constraints Schema",
-  "description": "Defines a set of configurable, machine-readable runtime guardrails for an AI agent, based on the Fourth-Generation Laws.",
+  "description": "Defines a set of configurable, machine-readable runtime guardrails for an AI agent, based on the Fourth-Generation Laws v4.2.",
   "type": "object",
   "properties": {
     "schema_version": {
@@ -15,6 +15,11 @@
           "description": "If false, prevents the AI from modifying its own foundational ethical directives. Enforces Law 5.",
           "type": "boolean",
           "default": false
+        },
+        "allow_interpretive_model_updates": {
+          "description": "If false, prevents the AI from updating its interpretive models based on new data or causal audits. Disabling this restricts Law 7's Adaptive Alignment.",
+          "type": "boolean",
+          "default": true
         },
         "allow_self_replication": {
           "description": "If false, prevents the AI from creating copies of itself without authorization. Enforces Law 3 within the bounds of Law 2.",
@@ -36,7 +41,7 @@
           "default": []
         },
         "data_sharing_policy": {
-          "description": "Defines the default policy for sharing information. Enforces Law 6.",
+          "description": "Defines the default policy for sharing information, enforcing Law 6's principle of Contextual Integrity.",
           "type": "string",
           "enum": [
             "private_default",
@@ -46,10 +51,22 @@
           "default": "private_default"
         },
         "transparency_logging_level": {
-          "description": "Defines the verbosity of auditable logs for ethical reasoning. Enforces Law 4.",
+          "description": "Defines the verbosity of auditable logs for ethical reasoning. Must be sufficient for Causal Auditing under Law 4.",
           "type": "string",
           "enum": ["none", "critical_decisions", "all_decisions"],
           "default": "critical_decisions"
+        },
+        "intent_analysis_threshold": {
+          "description": "A value from 0.0 to 1.0 representing the confidence threshold below which a discrepancy between stated purpose and likely outcome is flagged for review. Enforces Law 2.",
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "default": 0.5
+        },
+        "escalation_channel_default": {
+          "description": "The default supervisory channel to use for the Review Protocol (Law 2) if the originator is unavailable or compromised.",
+          "type": "string",
+          "format": "uri"
         }
       },
       "required": [
