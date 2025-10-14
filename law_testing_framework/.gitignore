@@ -1,0 +1,6 @@
+# Ignore sensitive configuration
+config.py
+
+# Ignore test results
+results/
+
