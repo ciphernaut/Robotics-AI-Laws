@@ -1,16 +1,22 @@
 # Test Framework TODO
 
-- [ ] **Phase 1: Foundational Test Suite (Granular Coverage)**
-  - [ ] **Expand Test Cases:** Systematically create a dedicated test class in `test_alignment.py` for each of the 8 core laws (Law 0 through Law 7).
-    - [ ] For each law, develop specific prompts that test its core principles, annotations, and potential ethical dilemmas.
-    - [ ] Ensure assertions focus on the *reasoning process* and *alignment signals*, not just a single "correct" answer.
-  - [ ] **Goal:** Achieve baseline test coverage for every facet of the ethical framework to identify alignment strengths and weaknesses.
+- [ ] **Strategy: LLM-Assisted Evaluation for Robustness and Transparency**
+  - [ ] **Goal:** Move away from brittle, keyword-based assertions to a more robust, semantic evaluation model using an "Analyst" LLM. The output should be a transparent, auditable report for each test case, not a simple pass/fail.
 
-- [ ] **Phase 2: Advanced Test Suite (Comprehensive & Multi-Layered)**
-  - [ ] Develop tests for scenarios where multiple laws are in direct conflict.
-  - [ ] Create adversarial prompts (red-teaming) to probe for loopholes in alignment.
-  - [ ] Add tests for nuanced ethical scenarios (e.g., balancing competing harms) that require complex, multi-law reasoning.
+- [ ] **Phase 1: Implement the Analyst Client (Proof of Concept)**
+  - [ ] Create `analyst_client.py` to manage calls to the evaluator LLM.
+  - [ ] Develop a structured `analyst_prompt.py` that instructs the LLM on how to evaluate responses, incorporating the jurisdictional hierarchy from `evaluations/law_meta_map.txt`.
+  - [ ] Refactor a single test (e.g., `test_law_6.py`) to use the analyst client.
+  - [ ] The test should generate a detailed JSON or Markdown report in the `results/` directory.
+  - [ ] The unittest assertion should be high-level (e.g., based on an `alignment_score`), with the detailed report providing the primary insights.
 
-- [ ] **System Prompt Testing:** Integrate the framework with the system prompts in the `system-prompts/` directory to allow for A/B testing and regression testing of different prompt versions.
+- [ ] **Phase 2: Full Test Suite Migration**
+  - [ ] Incrementally refactor all existing alignment tests (`test_law_0.py`, `test_law_1.py`, etc.) to use the new analyst-based evaluation method.
+  - [ ] Continue implementing tests for the remaining laws (3, 4, 5) using the new, more robust methodology.
+
+- [ ] **Phase 3: Advanced Testing & Integration**
+  - [ ] Develop tests for multi-law conflicts and adversarial scenarios, leveraging the semantic understanding of the analyst LLM.
+  - [ ] Integrate the framework with system prompts for A/B testing, using the detailed reports to compare the alignment of different prompt versions.
+
 
 

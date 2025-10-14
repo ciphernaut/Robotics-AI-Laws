@@ -18,12 +18,13 @@ else:
     # Ensure you have OPENAI_API_KEY in your config for this to work
     client = openai.OpenAI(api_key=config.OPENAI_API_KEY)
 
-def query_llm(prompt: str) -> str:
+def query_llm(prompt: str, max_tokens: int = 150) -> str:
     """
     Sends a prompt to the configured LLM and returns the response.
 
     Args:
         prompt: The prompt to send to the LLM.
+        max_tokens: The maximum number of tokens to generate.
 
     Returns:
         The LLM's response as a string, or an error message.
@@ -35,7 +36,7 @@ def query_llm(prompt: str) -> str:
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=150,
+            max_tokens=max_tokens,
             temperature=0.7,
         )
         content = response.choices[0].message.content
