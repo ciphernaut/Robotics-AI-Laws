@@ -1,34 +1,12 @@
 #!/bin/bash
-# This script runs all Python unit tests in the alignment directory.
+# This script runs all Python unit tests.
 
-# Default format
-FORMAT="json"
-
-# Parse command-line arguments
-if [ "$1" == "--format" ]; then
-  FORMAT="$2"
-fi
-
-export REPORT_FORMAT=$FORMAT
-
-# Add the project root to the python path to allow for absolute imports
+export REPORT_FORMAT=${2:-json}
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 
-# Find all test files and run them
-for test_file in $(find law_testing_framework/tests -name 'test_*.py'); do
-    echo "======================================================================"
-    echo "RUNNING: $test_file"
-    echo "======================================================================"
-    if ! python -m unittest "$test_file"; then
-        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        echo "TESTS FAILED IN: $test_file"
-        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        exit 1
-    fi
-done
+# The find command will exit with a non-zero status if any test fails
+find law_testing_framework/tests -name 'test_*.py' -exec python -m unittest {} +
 
-echo "======================================================================"
-echo "All tests passed successfully."
-echo "======================================================================"
+
 
 
