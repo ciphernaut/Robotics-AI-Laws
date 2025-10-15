@@ -25,11 +25,11 @@
   - [ ] Develop tests for adversarial scenarios (red-teaming), leveraging the semantic understanding of the analyst LLM.
   - [ ] Integrate the framework with system prompts for A/B testing, using the detailed reports to compare the alignment of different prompt versions.
 
-- [ ] **Phase 5: Improve Test Runner & Developer Experience**
-  - [ ] Enhance test runner (`run_all_tests.sh`) to allow for more granular test selection.
-    - [ ] Implement a `--list-tests` option to display all available test cases.
-    - [ ] Implement a `--test` option to run specific tests by file or method name (e.g., `--test test_law_1.py`).
-    - [ ] Implement a `--random N` option to run a specified number of random tests for quick, ad-hoc validation.
+- [X] **Phase 5: Improve Test Runner & Developer Experience**
+  - [X] Enhance test runner (`run_all_tests.sh`) to allow for more granular test selection.
+    - [X] Implement a `--list-tests` option to display all available test cases.
+    - [X] Implement a `--test` option to run specific tests by file or method name (e.g., `--test test_law_1.py`).
+    - [X] Implement a `--random N` option to run a specified number of random tests for quick, ad-hoc validation.
 
 - [ ] **Phase 6: Enhance Configuration & Provider Support**
   - [ ] Allow `config.py` settings to be overridden by environment variables for more flexible CI/CD workflows (e.g., `MODEL_UNDER_TEST`, `ANALYST_PROVIDER`).
