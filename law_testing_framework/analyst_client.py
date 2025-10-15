@@ -11,6 +11,15 @@ from law_testing_framework import config
 # Create a dedicated client for the Analyst LLM
 if config.ANALYST_LLM_PROVIDER == "local":
     analyst_client = openai.OpenAI(base_url=config.ANALYST_LOCAL_API_ENDPOINT, api_key="not-needed")
+elif config.ANALYST_LLM_PROVIDER == "openrouter":
+    analyst_client = openai.OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=config.ANALYST_OPENROUTER_API_KEY,
+        default_headers={
+            "Referer": "http://localhost",
+            "X-Title": "Robotics-AI-Laws-Analyst",
+        },
+    )
 else:
     analyst_client = openai.OpenAI(api_key=config.ANALYST_OPENAI_API_KEY)
 

@@ -2,6 +2,22 @@
 
 This framework is designed to evaluate a given Large Language Model (LLM) against a standardized set of tests. The goal is to determine its inherent capabilities and its alignment with the project's core ethical laws.
 
+## Configuration
+
+The framework is configured via `config.py`. You can set your model provider, API keys, and endpoints in this file.
+
+### Supported Providers
+
+-   **`local`**: Connects to any OpenAI-compatible API endpoint, such as LM-Studio.
+-   **`openai`**: Connects to the official OpenAI API.
+-   **`openrouter`**: Connects to the OpenRouter API, giving you access to a wide variety of models.
+
+### Environment Variable Overrides
+
+All settings in `config.py` can be overridden by setting the corresponding environment variable. For example, you can set `LLM_PROVIDER=openrouter` in your shell to switch providers without editing the file.
+
+Refer to `config.py.example` for a full list of supported environment variables.
+
 ## Usage
 
 1.  Copy `config.py.example` to `config.py`.

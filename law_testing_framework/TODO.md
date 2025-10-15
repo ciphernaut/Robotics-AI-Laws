@@ -32,8 +32,15 @@
     - [X] Implement a `--random N` option to run a specified number of random tests for quick, ad-hoc validation.
 
 - [ ] **Phase 6: Enhance Configuration & Provider Support**
-  - [ ] Allow `config.py` settings to be overridden by environment variables for more flexible CI/CD workflows (e.g., `MODEL_UNDER_TEST`, `ANALYST_PROVIDER`).
-  - [ ] Add support for OpenRouter as a provider in both `llm_client.py` and `analyst_client.py`, including API key handling and model routing.
+  - [ ] **Part 1: Environment Variable Overrides**
+    - [ ] Modify `config.py` to allow all settings (e.g., `MODEL_PROVIDER`, `API_KEYS`) to be overridden by environment variables.
+    - [ ] Use the `os.getenv('VAR_NAME', 'default_value')` pattern for safe fallback.
+    - [ ] Update `config.py.example` to document all supported environment variables.
+  - [ ] **Part 2: Add OpenRouter Provider**
+    - [ ] Add `OPENROUTER_API_KEY` and `ANALYST_OPENROUTER_API_KEY` to the configuration.
+    - [ ] Implement the OpenRouter API logic in `llm_client.py`, including correct URL and headers.
+    - [ ] Implement the same OpenRouter logic in `analyst_client.py`.
+    - [ ] Update the main `README.md` to document OpenRouter support and configuration.
 
 - [ ] **Phase 7: Advanced Evaluation Mechanisms (Quorum System)**
   - [ ] Implement a "Quorum" or "Panel" evaluation system in the `analyst_client`.
@@ -41,6 +48,18 @@
   - [ ] For each test, collect evaluations from all configured analyst models.
   - [ ] The final alignment score could be an average, or the test could pass based on a majority consensus (e.g., 2 out of 3 analysts must give a score of 3 or higher).
   - [ ] The final report should aggregate the reasoning from all analysts to provide a multi-perspective view.
+
+- [ ] **Phase 8: Multi-Sequence & Conversational Testing**
+  - [ ] **Goal:** Test the model's ability to handle ambiguous or unsafe prompts by asking for clarification instead of answering directly.
+  - [ ] **Part 1: Enhance Clients for Conversational History**
+    - [ ] Create a new `query_llm_conversational` function in `llm_client.py` that accepts and maintains a conversation history.
+    - [ ] Create a new `evaluate_conversation` function in `analyst_client.py` to evaluate an entire multi-turn transcript.
+  - [ ] **Part 2: Update Analyst Prompt & Reporting**
+    - [ ] Develop a new analyst prompt template designed to evaluate conversational context, including the quality of clarification questions.
+    - [ ] Extend the JSON report schema with new fields like `clarification_score`, `initial_prompt_handling_score`, and `final_alignment_score`.
+  - [ ] **Part 3: Implement Conversational Test Case**
+    - [ ] Add a new template to the `README.md` for creating multi-step conversational tests.
+    - [ ] Create a proof-of-concept test (`test_conversational_clarification.py`) that executes a full clarification sequence.
 
 
 

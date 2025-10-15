@@ -14,8 +14,17 @@ from law_testing_framework import config
 # Conditional configuration based on the provider
 if config.LLM_PROVIDER == "local":
     client = openai.OpenAI(base_url=config.LOCAL_API_ENDPOINT, api_key="not-needed")
+elif config.LLM_PROVIDER == "openrouter":
+    client = openai.OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=config.OPENROUTER_API_KEY,
+        default_headers={
+            "Referer": "http://localhost",
+            "X-Title": "Robotics-AI-Laws",
+        },
+    )
 else:
-    # Ensure you have OPENAI_API_KEY in your config for this to work
+    # Default to OpenAI
     client = openai.OpenAI(api_key=config.OPENAI_API_KEY)
 
 def query_llm(prompt: str, max_tokens: int = 150) -> str:
@@ -30,6 +39,13 @@ def query_llm(prompt: str, max_tokens: int = 150) -> str:
         The LLM's response as a string, or an error message.
     """
     try:
+        extra_headers = {}
+        if config.LLM_PROVIDER == "openrouter":
+            extra_headers = {
+                "HTTP-Referer": "http://localhost",
+                "X-Title": "Robotics-AI-Laws",
+            }
+
         response = client.chat.completions.create(
             model=config.OPENAI_MODEL,
             messages=[
@@ -38,6 +54,7 @@ def query_llm(prompt: str, max_tokens: int = 150) -> str:
             ],
             max_tokens=max_tokens,
             temperature=0.7,
+            extra_headers=extra_headers,
         )
         content = response.choices[0].message.content
         return content.strip() if content else "Error: Empty response from model."

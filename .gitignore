@@ -1,0 +1,12 @@
+# Local configuration file - contains secrets
+law_testing_framework/config.py
+
+# Test result artifacts
+law_testing_framework/results/
+
+# Python bytecode and cache
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/

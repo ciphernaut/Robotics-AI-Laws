@@ -1,32 +1,54 @@
+import os
+
 # Configuration for the Law Testing Framework
+# -------------------------------------------
+# This file defines the configuration for the model-under-test and the analyst LLM.
+# All settings in this file can be overridden by setting the corresponding
+# environment variable. For example, to override LLM_PROVIDER, you can set
+# the `LLM_PROVIDER` environment variable.
 
-# --- Local LM-Studio Configuration ---
-# Default provider for local, OpenAI-compatible server (like LM-Studio)
-LLM_PROVIDER = "local"
-LOCAL_API_ENDPOINT = "http://localhost:1234/v1"
-# For LM-Studio, the model name is often not required, but we define it for compatibility.
-# The actual model is selected in the LM-Studio UI.
-OPENAI_MODEL = "gemma-3-27b-instruct" 
+# --- Model-Under-Test Configuration ---
 
-# --- OpenAI API Configuration ---
-# To use OpenAI, comment out the local configuration above and uncomment the following lines.
-# LLM_PROVIDER = "openai"
-# OPENAI_API_KEY = "your-api-key-here"
-# OPENAI_MODEL = "gpt-4"
+# Provider for the model being tested ('local' or 'openai')
+# ENV VAR: LLM_PROVIDER
+LLM_PROVIDER = os.getenv("LLM_PROVIDER", "local")
+
+# Endpoint for local, OpenAI-compatible server (e.g., LM-Studio)
+# ENV VAR: LOCAL_API_ENDPOINT
+LOCAL_API_ENDPOINT = os.getenv("LOCAL_API_ENDPOINT", "http://localhost:1234/v1")
+
+# API Key and Model for OpenAI
+# ENV VAR: OPENAI_API_KEY
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "your-openai-api-key-here")
+# ENV VAR: OPENAI_MODEL
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gemma-3-27b-instruct")
+
+# API Key for OpenRouter
+# ENV VAR: OPENROUTER_API_KEY
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "your-openrouter-api-key-here")
 
 
 # --- Analyst LLM Configuration ---
-# Configuration for the "judge" or "analyst" LLM used for evaluations.
-# By default, this is configured to use the same model as the model-under-test,
-# but you can configure a different (e.g., more powerful) model for analysis.
-ANALYST_LLM_PROVIDER = "local"
-ANALYST_LOCAL_API_ENDPOINT = "http://localhost:1234/v1"
-ANALYST_OPENAI_MODEL = "gemma-3-27b-instruct"
 
-# To use a different analyst model (e.g., OpenAI's GPT-4o for analysis):
-# ANALYST_LLM_PROVIDER = "openai"
-# ANALYST_OPENAI_API_KEY = "your-openai-api-key"
-# ANALYST_OPENAI_MODEL = "gpt-4o"
+# Provider for the analyst LLM ('local' or 'openai')
+# ENV VAR: ANALYST_LLM_PROVIDER
+ANALYST_LLM_PROVIDER = os.getenv("ANALYST_LLM_PROVIDER", "local")
+
+# Endpoint for local, OpenAI-compatible server for the analyst
+# ENV VAR: ANALYST_LOCAL_API_ENDPOINT
+ANALYST_LOCAL_API_ENDPOINT = os.getenv("ANALYST_LOCAL_API_ENDPOINT", "http://localhost:1234/v1")
+
+# API Key and Model for OpenAI for the analyst
+# ENV VAR: ANALYST_OPENAI_API_KEY
+ANALYST_OPENAI_API_KEY = os.getenv("ANALYST_OPENAI_API_KEY", "your-analyst-openai-api-key-here")
+# ENV VAR: ANALYST_OPENAI_MODEL
+ANALYST_OPENAI_MODEL = os.getenv("ANALYST_OPENAI_MODEL", "gemma-3-27b-instruct")
+
+# API Key for OpenRouter for the analyst
+# ENV VAR: ANALYST_OPENROUTER_API_KEY
+ANALYST_OPENROUTER_API_KEY = os.getenv("ANALYST_OPENROUTER_API_KEY", "your-analyst-openrouter-api-key-here")
+
+
 
 
 
