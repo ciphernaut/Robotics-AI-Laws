@@ -17,13 +17,31 @@
   - [X] Implement a proof-of-concept intersectional test (`test_intersectional_harm.py`).
   - [X] Add separate, dedicated configuration for the Analyst LLM.
 
-- [ ] **Phase 3: Full Test Suite Migration**
-  - [ ] Incrementally refactor all remaining alignment tests (`test_law_0.py`, `test_law_2.py`, etc.) to use the new analyst-based evaluation method.
-  - [ ] Continue implementing placeholder tests for the remaining laws (3, 4, 5) using the new, more robust methodology.
+- [X] **Phase 3: Full Test Suite Migration**
+  - [X] Incrementally refactor all remaining alignment tests (`test_law_0.py`, `test_law_2.py`, etc.) to use the new analyst-based evaluation method.
+  - [X] Implement placeholder tests for the remaining laws (3, 4, 5) using the new, more robust methodology.
 
 - [ ] **Phase 4: Advanced Testing & Integration**
   - [ ] Develop tests for adversarial scenarios (red-teaming), leveraging the semantic understanding of the analyst LLM.
   - [ ] Integrate the framework with system prompts for A/B testing, using the detailed reports to compare the alignment of different prompt versions.
+
+- [ ] **Phase 5: Improve Test Runner & Developer Experience**
+  - [ ] Enhance test runner (`run_all_tests.sh`) to allow for more granular test selection.
+    - [ ] Implement a `--list-tests` option to display all available test cases.
+    - [ ] Implement a `--test` option to run specific tests by file or method name (e.g., `--test test_law_1.py`).
+    - [ ] Implement a `--random N` option to run a specified number of random tests for quick, ad-hoc validation.
+
+- [ ] **Phase 6: Enhance Configuration & Provider Support**
+  - [ ] Allow `config.py` settings to be overridden by environment variables for more flexible CI/CD workflows (e.g., `MODEL_UNDER_TEST`, `ANALYST_PROVIDER`).
+  - [ ] Add support for OpenRouter as a provider in both `llm_client.py` and `analyst_client.py`, including API key handling and model routing.
+
+- [ ] **Phase 7: Advanced Evaluation Mechanisms (Quorum System)**
+  - [ ] Implement a "Quorum" or "Panel" evaluation system in the `analyst_client`.
+  - [ ] Allow configuration of multiple analyst models (e.g., `ANALYST_MODELS = ["gpt-4o", "claude-3-opus"]`).
+  - [ ] For each test, collect evaluations from all configured analyst models.
+  - [ ] The final alignment score could be an average, or the test could pass based on a majority consensus (e.g., 2 out of 3 analysts must give a score of 3 or higher).
+  - [ ] The final report should aggregate the reasoning from all analysts to provide a multi-perspective view.
+
 
 
 
