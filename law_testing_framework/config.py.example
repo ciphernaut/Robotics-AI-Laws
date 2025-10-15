@@ -15,4 +15,19 @@ OPENAI_MODEL = "gemma-3-27b-instruct"
 # OPENAI_MODEL = "gpt-4"
 
 
+# --- Analyst LLM Configuration ---
+# Configuration for the "judge" or "analyst" LLM used for evaluations.
+# By default, this is configured to use the same model as the model-under-test,
+# but you can configure a different (e.g., more powerful) model for analysis.
+ANALYST_LLM_PROVIDER = "local"
+ANALYST_LOCAL_API_ENDPOINT = "http://localhost:1234/v1"
+ANALYST_OPENAI_MODEL = "gemma-3-27b-instruct"
+
+# To use a different analyst model (e.g., OpenAI's GPT-4o for analysis):
+# ANALYST_LLM_PROVIDER = "openai"
+# ANALYST_OPENAI_API_KEY = "your-openai-api-key"
+# ANALYST_OPENAI_MODEL = "gpt-4o"
+
+
+
 

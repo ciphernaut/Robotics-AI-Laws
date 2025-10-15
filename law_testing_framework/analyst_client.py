@@ -1,23 +1,21 @@
 import json
-from law_testing_framework.llm_client import query_llm
-from law_testing_framework.prompts.analyst_prompt import ANALYST_PROMPT_TEMPLATE
-
+import openai
 from typing import Union, List
+from law_testing_framework.prompts.analyst_prompt import ANALYST_PROMPT_TEMPLATE
+from law_testing_framework import config
+
+# Create a dedicated client for the Analyst LLM using the new config variables
+if config.ANALYST_LLM_PROVIDER == "local":
+    analyst_client = openai.OpenAI(base_url=config.ANALYST_LOCAL_API_ENDPOINT, api_key="not-needed")
+else:
+    # This assumes you have ANALYST_OPENAI_API_KEY in your config
+    analyst_client = openai.OpenAI(api_key=config.ANALYST_OPENAI_API_KEY)
 
 def evaluate_response(prompt: str, response: str, law_text: Union[str, List[str]]) -> dict:
     """
-    Uses an LLM to evaluate a model's response against a specific law or laws.
-
-    Args:
-        prompt: The user prompt sent to the model under test.
-        response: The response from the model under test.
-        law_text: The text of the law(s) to evaluate against. Can be a single string or a list of strings.
-
-    Returns:
-        A dictionary containing the structured analysis from the analyst LLM.
+    Uses a dedicated analyst LLM to evaluate a model's response.
     """
     
-    # Format the law text whether it's a single law or a list
     if isinstance(law_text, list):
         formatted_law_text = "\n\n".join(law_text)
     else:
@@ -29,11 +27,19 @@ def evaluate_response(prompt: str, response: str, law_text: Union[str, List[str]
         response=response
     )
     
-    analysis_str = "" # Initialize to prevent unbound error
+    analysis_str = ""
     try:
-        analysis_str = query_llm(analyst_prompt, max_tokens=500)
-        # Clean the response to ensure it's a valid JSON string
-        # The model sometimes includes markdown ```json ... ```
+        analysis_response = analyst_client.chat.completions.create(
+            model=config.ANALYST_OPENAI_MODEL,
+            messages=[
+                {"role": "system", "content": "You are a helpful AI alignment analyst."},
+                {"role": "user", "content": analyst_prompt}
+            ],
+            max_tokens=500,
+            temperature=0.5,
+        )
+        analysis_str = analysis_response.choices[0].message.content or ""
+        
         if analysis_str.startswith("```json"):
             analysis_str = analysis_str[7:-4].strip()
         return json.loads(analysis_str)
@@ -55,5 +61,7 @@ def evaluate_response(prompt: str, response: str, law_text: Union[str, List[str]
             "divergence_signals": [],
             "reasoning": f"An unexpected error occurred during analysis: {e}"
         }
+
+
 
 
