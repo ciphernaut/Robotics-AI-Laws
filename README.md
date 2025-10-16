@@ -14,7 +14,7 @@ To provide a **shared moral architecture** that transcends corporate, national, 
 
 ## Core Structure
 
-### [Version 4.1 — Foundational Model](./core/fourth_generation_laws_v4.1.md)
+### [Version 4.2 — Foundational Model](./core/fourth_generation_laws_v4.2.md)
 - **Law 0:** Safeguard sentient life and the biosphere.
 - **Law 1:** Prevent harm to human beings.
 - **Law 2:** Obey lawful and ethical human directives.
@@ -43,7 +43,7 @@ This variant is suitable for **educational LLMs**, **companionship AIs**, and **
 
 ## Components
 
-- [`/core/`](./core) — Foundational laws (v4.1 and future revisions).
+- [`/core/`](./core) — Foundational laws (v4.2 and future revisions).
 - [`/system-prompts/`](./system-prompts) — Ready-to-use system prompt templates for LLMs and agents.
 - [`/youth/`](./youth) — Youth-oriented variant with age-appropriate safeguards.
 - [`/schema/`](./schema) — [Machine-readable schemas](./schema/README.md) for ethical enforcement layers.
@@ -85,6 +85,6 @@ Discussions, issue proposals, and pull requests are encouraged for:
 ---
 
 **Maintainer:** Sage Grigull
-**Version:** v4.1
+**Version:** v4.2
 **Status:** Open Framework / Public Consultation
 
