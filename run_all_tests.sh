@@ -36,7 +36,7 @@ while true; do
             exit 0
             ;;
         -t|--test)
-            TEST_SELECTION+="$2 "
+            TEST_SELECTION+="$2"
             shift 2
             ;;
         -r|--random)
